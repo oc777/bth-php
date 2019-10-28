@@ -1,6 +1,8 @@
 <?php
 include "./config.php";
 include "./src/functions.php";
+
+$db = connectToDB($dsn);
 ?>
 
 <!doctype html>

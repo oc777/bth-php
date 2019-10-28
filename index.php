@@ -1,13 +1,13 @@
 <?php 
     $title = "Hem";
     include("incl/header.php"); 
+
+    $article = "start";
+    $html = getArticle($db, $article);
 ?>
 
     <main>
-        <h1>Hem</h1>
-        <p>This is all aout me and what I like.</p>
-
-        
+        <?php echo $html; ?>
 
     </main>
 
