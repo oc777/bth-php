@@ -1,1 +1,5 @@
-<h1>web</h1>
+<?php
+$article = "om-vagmuseum-natet";
+$html = getArticle($db, $article);
+echo $html["data"];
+?>

@@ -1,1 +1,5 @@
-<h1>opening</h1>
+<?php
+$article = "om-invigning";
+$html = getArticle($db, $article);
+echo $html["data"];
+?>

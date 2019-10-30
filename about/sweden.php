@@ -1,1 +1,5 @@
-<h1>SE</h1>
+<?php
+$article = "sveriges-vaghistoria";
+$html = getArticle($db, $article);
+echo $html["data"];
+?>

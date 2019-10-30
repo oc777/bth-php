@@ -1,0 +1,4 @@
+DirectoryIndex index.php
+
+#RewriteEngine On
+ErrorDocument 404 /404.php

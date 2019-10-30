@@ -16,3 +16,6 @@ if (!isset($_SESSION)) {
 $dbFileName = __DIR__ . "/db/nvm.sqlite";
 $dsn = "sqlite:$dbFileName";
 
+// Create a DSN for objects db
+$dbObjFileName = __DIR__ . "/db/nvm2.sqlite";
+$dsnObj = "sqlite:$dbObjFileName";

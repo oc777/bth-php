@@ -17,11 +17,6 @@ $pages = [
         "title" => "NVM Projekt",
         "file" => __DIR__ . "/$base/project.php",
     ],
-    "opening" => [
-        "nav" => "NVM Invigning",
-        "title" => "NVM Invigning",
-        "file" => __DIR__ . "/$base/opening.php",
-    ],
     "blekinge" => [
         "nav" => "Blekinges väghistoria",
         "title" => "Blekinges väghistoria",
@@ -31,6 +26,11 @@ $pages = [
         "nav" => "Sveriges väghistoria",
         "title" => "Sveriges väghistoria",
         "file" => __DIR__ . "/$base/sweden.php",
+    ],
+    "opening" => [
+        "nav" => "NVM Invigning",
+        "title" => "NVM Invigning",
+        "file" => __DIR__ . "/$base/opening.php",
     ],
     "web" => [
         "nav" => "NVM på Webben",

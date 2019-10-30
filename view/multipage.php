@@ -1,8 +1,8 @@
-<div class="wrap-main">
+<div class="wrap-main multi">
 
 <?php require __DIR__ . "/multipage-nav.php" ?>
 
-    <main>
+    <main class="multi">
         <article>
             <?php if ($page) : ?>
                 <?php require $page["file"] ?>

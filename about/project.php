@@ -1,1 +1,5 @@
-<h1>project</h1>
+<?php
+$article = "om-projektet";
+$html = getArticle($db, $article);
+echo $html["data"];
+?>

@@ -1,2 +1,5 @@
-<h1>blekninge</h1>
-
+<?php
+$article = "blekinges-vaghistoria";
+$html = getArticle($db, $article);
+echo $html["data"];
+?>
