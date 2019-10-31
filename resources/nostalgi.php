@@ -1,7 +1,7 @@
 <h1>Källor</h1>
 <?php 
-$article = "kallor";
-$html = getArticle($db, $article);
-$htmlArray = explode("</div>", $html["data"]);
-echo $htmlArray[4];
+$name = "kallor";
+$article = getArticle($dbObj, "article", $name);
+$htmlArray = explode("</div>", $article[0]["data"]);
+echo $htmlArray[4] . "</div>";
 ?>

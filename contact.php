@@ -6,8 +6,9 @@
 <main class="contact">
 <?php 
 $article = "kontakt";
-$html = getArticle($db, $article);
-echo $html["data"];
+$html = getArticle($dbObj, "article", $article);
+echo '<h1>' . $html[0]["title"] . '</h1>';
+echo $html[0]["data"];
 ?>
 </main>
 

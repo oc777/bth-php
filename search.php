@@ -14,11 +14,9 @@ $urlSrc = $_SERVER['HTTP_REFERER'];
 $urlObj = "roads.php?road=";
 
 if (!is_null($query)) {
-    $res = search($db, $query);
+    $res = getObjects($db, $query);
     //var_dump($res);
-    if (!is_null($res)) {
-        //$urlObj .= $res;
-        var_dump($urlObj);
+    if (count($res) != 0) {
         $_SESSION['search_objs'] = $res;
         header("Location: ./roads.php");
     } else {

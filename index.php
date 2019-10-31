@@ -5,9 +5,12 @@
 
 <main class="index">
 <?php 
-$article = "start";
-$html = getArticle($db, $article);
-echo $html["data"];
+$name = "start";
+$article = getArticle($dbObj, "article", $name);
+
+echo '<h1>' . $article[0]['title'] . '</h1>';
+
+echo $article[0]['data'];
 ?>
 </main>
 

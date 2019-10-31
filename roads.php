@@ -2,20 +2,25 @@
 $title = "Vägmiljöer";
 include("incl/header.php");
 
+// get list of objects from session (search) or db
 $roadObjects = (isset($_SESSION["search_objs"]))
 ? $_SESSION["search_objs"]
 : getObjects($dbObj);
 
+// get road title to show only one road
 $road = isset($_GET['road'])
 ? $_GET['road']
 : null;
 
+// get the view option to display objects
 $view = isset($_GET['view'])
 ? $_GET['view']
 : "compact";
 
+// pagination in single road view
 $roadNext = null;
 $roadPrev = null;
+$i = null;
 if (isset($road)) {
     $i = array_search($road, array_column($roadObjects, 'name'));
     $roadPrev = ($i > 0) ? $roadObjects[$i - 1]['name'] : null;
@@ -26,17 +31,18 @@ if (isset($road)) {
     // echo 'next: ' . $roadNext . PHP_EOL;
 }
 
+// remove search results from session
 if (isset($_SESSION["search_objs"])) {
     unset($_SESSION["search_objs"]);
 }
 
 ?>
 
-<?php if (!isset($road)): ?>
+<?php if (!isset($road)) : ?>
 <main class="roads">
 <h1>Vägmiljöer</h1>
 
-<?php if ($view == "compact"): ?>
+    <?php if ($view == "compact") : ?>
 
 <div class="view-opt">
     <a href="?view=extended">Utökad vy</a>
@@ -44,13 +50,12 @@ if (isset($_SESSION["search_objs"])) {
 
 <div class="objects compact">
 
-<?php 
-foreach ($roadObjects as $obj) {
-    $img = getObjMainImage($dbObj, $obj['title']);
-    // var_dump($img);
-    $src = $img[0]['image1'];
-    $alt = $img[0]['image1Alt'];
-    echo '
+        <?php 
+        foreach ($roadObjects as $obj) {
+            $img = getFirstImage($dbObj, "object", $obj['name']);
+            $src = $img['image1'];
+            $alt = $img['image1Alt'];
+            echo '
     <div class="obj">
         <a href="?road=' . $obj['name'] . '">
             <div>
@@ -60,14 +65,14 @@ foreach ($roadObjects as $obj) {
         </a>
     </div>
     ';
-}
+        }
 
-?>
+        ?>
 
 </div>
 
 
-<?php elseif ($view == "extended"): ?>
+    <?php elseif ($view == "extended") : ?>
 
 <div class="view-opt">
     <a href="?view=compact">Kompakt vy</a>
@@ -76,14 +81,13 @@ foreach ($roadObjects as $obj) {
 
 <div class="objects extended">
 
-<?php
-foreach ($roadObjects as $obj) {
-    $img = getObjMainImage($dbObj, $obj['title']);
-    // var_dump($img);
-    $src = $img[0]['image1'];
-    $alt = $img[0]['image1Alt'];
-    $text = substr(ltrim($obj['data']), 0, 325);
-    echo '
+        <?php
+        foreach ($roadObjects as $obj) {
+            $img = getFirstImage($dbObj, "object", $obj['name']);
+            $src = $img['image1'];
+            $alt = $img['image1Alt'];
+            $text = substr(ltrim($obj['data']), 0, 325);
+            echo '
     <div class="obj">
         <div class="img">
             <img src="img/500/' . $src .'" alt="' . $alt . '"/>
@@ -94,40 +98,49 @@ foreach ($roadObjects as $obj) {
         </div>
     </div>
     ';
-}
-?>
+        }
+        ?>
 
 </div>
 
-<?php endif; ?>
+    <?php endif; ?>
 
 
 </main>
 
-<?php else: ?>
+<?php else : ?>
 
 <main class="roads-obj">
 
 <div class="pagination flex">
     <span>
-<?php if (isset($roadPrev)) {
-    echo '<a href="?road=' . $roadPrev . '"><i class="fa fa-angle-left"></i> Föregående</a>';
-}?>
+    <?php if (isset($roadPrev)) {
+        echo '<a href="?road=' . $roadPrev . '"><i class="fa fa-angle-left"></i> Föregående</a>';
+    }?>
     </span>
     <span><a href="roads.php">Visa alla</a></span>
     <span>
-<?php if (isset($roadNext)) {
-    echo '<a href="?road=' . $roadNext . '">Nästa <i class="fa fa-angle-right"></i></a>';
-}?>
+    <?php if (isset($roadNext)) {
+        echo '<a href="?road=' . $roadNext . '">Nästa <i class="fa fa-angle-right"></i></a>';
+    }?>
     </span>
 </div>
 
 
-<?php
+    <?php
+    // $road = getOneObject($db, $road);
+    // echo $road;
 
-$road = getOneObject($db, $road);
-echo $road;
-?>
+    $img1 = getFirstImage($dbObj, "object", $road);
+    renderImage($img1, 1);
+
+    echo $roadObjects[$i]['data'];
+
+    $img2 = getSecondImage($dbObj, "object", $road);
+    if (!is_null($img2['image2'])) {
+        renderImage($img2, 2);
+    }
+    ?>
 
 </main>
 

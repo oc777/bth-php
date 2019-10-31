@@ -25,7 +25,7 @@ $dbObj = connectToDB($dsnObj);
                 <a href="index.php"><img src="pics/logo.png" alt="logo" /></a>
                 <div class="search">
                     <form action="search.php" method="GET" >
-                        <input type="text" placeholder="Sök..." name="search" require>
+                        <input type="text" placeholder="Sök vägmiljöer..." name="search" required>
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -38,7 +38,7 @@ $dbObj = connectToDB($dsnObj);
                 <a class="<?= basename($_SERVER['REQUEST_URI']) == "gallery.php" ? "selected" : ""; ?>" href="gallery.php">Bilder</a>
                 <a class="<?= strpos(basename($_SERVER['REQUEST_URI']), "resources.php") !== false ? "selected" : ""; ?>" href="resources.php?page=index">Källor</a>
                 <a class="<?= basename($_SERVER['REQUEST_URI']) == "contact.php" ? "selected" : ""; ?>" href="contact.php">Kontakt</a>
-                <a class="<?= basename($_SERVER['REQUEST_URI']) == "login.php" ? "selected" : ""; ?> icon" href="login.php"><i class="fa fa-sign-in"></i></a>
+                <a class="<?= basename($_SERVER['REQUEST_URI']) == "login.php" ? "selected" : ""; ?> icon" href="#"><i class="fa fa-sign-in"></i></a>
             </nav>
 
 <?php 
